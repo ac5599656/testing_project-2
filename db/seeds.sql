@@ -1,4 +1,4 @@
-INSERT INTO beers (name, category, abv, volume_OZ)
+INSERT INTO beers (`name`, category, abv, volume_OZ)
 VALUES (
     "Coors Light", "Pilsner", 4.2, 12
 ),
@@ -6,7 +6,7 @@ VALUES (
     "Lagunitas", "IPA", 6.2, 12
 );
 
-INSERT INTO wines (name, category, abv, volume_OZ)
+INSERT INTO wines (`name`, category, abv, volume_OZ)
 VALUES (
     "Kendall-Jackson Grand Reserve", "Cabernet Sauvignon", 13.5, 5
 ),
@@ -14,10 +14,21 @@ VALUES (
     "Giant Steps", "Pinot Noir", 13.5, 5
 );
 
-INSERT INTO spirits (name, category, abv, volume_OZ)
+INSERT INTO spirits (`name`, category, abv, volume_OZ)
 VALUES (
     "Rumple Minze", "schnapps", 50, 1.5
 ),
 (
     "Crown Royal", "whiskey", 40, 1.5
+);
+
+INSERT INTO people (`name`, email, age, gender, height, `weight`)
+VALUES (
+    "Anne", "ac5599656@gmail.com", 40, 'Female', 55, 152
+),
+(
+    "Bonnie", "bonnieacuna@gmail.com", 37, 'Female', 59, 180
+),
+(
+    "Greg", "gregmash12@gmail.com", 29, 'Male', 61, 205
 );
