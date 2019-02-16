@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Post = sequelize.define("Post", {
+    const Comment = sequelize.define("Comment", {
         body: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -12,19 +12,19 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.NOW
         }
     });
-    Post.associate = (models) => {
-        Post.belongsTo(models.Person, {
+    Comment.associate = (models) => {
+        Comment.belongsTo(models.Post, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    Post.associate = (models) => {
-        Post.hasMany(models.Comment, {
+    Comment.associate = (models) => {
+        Comment.belongsTo(models.Person, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return Post;
+    return Comment;
 };

@@ -36,7 +36,12 @@ module.exports = function(sequelize, DataTypes) {
     })
   };
   Person.associate = (models) => {
+    Person.hasMany(models.Comment, {
+      onDelete: "cascade"
+    })
+  };
+  Person.associate = (models) => {
     Person.hasMany(models.Login)
-  }
+  };
   return Person;
 };
