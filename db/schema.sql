@@ -43,7 +43,5 @@ CREATE TABLE people
 	email VARCHAR(100) NOT NULL,
 	age TINYINT NOT NULL,
 	gender VARCHAR(20) NOT NULL,
-    height VARCHAR(50) NOT NULL,
-    `weight` SMALLINT NOT NULL,
 	PRIMARY KEY (id)
 );

@@ -24,11 +24,11 @@ VALUES (
 
 INSERT INTO people (`name`, email, age, gender, height, `weight`)
 VALUES (
-    "Anne", "ac5599656@gmail.com", 40, 'Female', 55, 152
+    "Anne", "ac5599656@gmail.com", 40, 'Female'
 ),
 (
-    "Bonnie", "bonnieacuna@gmail.com", 37, 'Female', 59, 180
+    "Bonnie", "bonnieacuna@gmail.com", 37, 'Female'
 ),
 (
-    "Greg", "gregmash12@gmail.com", 29, 'Male', 61, 205
+    "Greg", "gregmash12@gmail.com", 29, 'Male'
 );
