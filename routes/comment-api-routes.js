@@ -10,8 +10,8 @@ module.exports = (app) => {
         db.Comment.findAll({
             where: query,
             include: [db.Person, db.Post]
-        }).then((dbPost) => {
-            res.json(dbPost)
+        }).then((dbComment) => {
+            res.json(dbComment)
         });
     });
 
@@ -21,8 +21,8 @@ module.exports = (app) => {
                 id: req.params.id
             },
             include: [db.Person, db.Post]
-        }).then((dbPost) => {
-            res.json(dbPost)
+        }).then((dbComment) => {
+            res.json(dbComment)
         });
     });
 
