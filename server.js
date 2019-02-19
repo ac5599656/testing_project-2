@@ -26,7 +26,8 @@ require("./routes/external-api-routes")(app);
 require("./routes/person-api-routes")(app);
 require("./routes/post-api-routes")(app);
 require("./routes/comment-api-routes")(app);
-require("./routes/comment-api-routes")(app);
+require("./routes/html-routes")(app);
+
 
 var syncOptions = { force: false };
 

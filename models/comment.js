@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     Comment.associate = (models) => {
         Comment.belongsTo(models.Post, {
             foreignKey: {
+                defaultValue: 1,
                 allowNull: false
             }
         });
@@ -22,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     Comment.associate = (models) => {
         Comment.belongsTo(models.Person, {
             foreignKey: {
+                defaultValue: 1,
                 allowNull: false
             }
         });

@@ -13,15 +13,17 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
     Post.associate = (models) => {
-        Post.belongsTo(models.Person, {
+         Post.belongsTo(models.Person, {
             foreignKey: {
+                defaultValue: 1,
                 allowNull: false
             }
-        });
+         });
     };
     Post.associate = (models) => {
         Post.hasMany(models.Comment, {
             foreignKey: {
+                defaultValue: 1,
                 allowNull: false
             }
         });
