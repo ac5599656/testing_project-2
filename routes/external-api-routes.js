@@ -1,5 +1,6 @@
 const db = require("../models");
 const axios = require("axios");
+const keys = require("../config/keys");
 
 module.exports = function(app) {
   app.get("/api/beer", function(req, res) {
@@ -19,7 +20,7 @@ module.exports = function(app) {
       abv: ${abv}
       descript: ${descript}
       `);
-      res.json(result.data);
+      res.json(name);
     })
     .catch((err) => {
       console.log(err);
@@ -27,10 +28,10 @@ module.exports = function(app) {
   })
 
   app.get("/api/location", function(req, res) {
-    const queryURL = `http://api.ipstack.com/check?access_key=${ipstackkey}`;
+    const queryURL = `http://api.ipstack.com/check?access_key=${keys.ipStackKey.ipStackKey}`;
     axios.get(queryURL)
     .then((result) => {
-      console.log(result);
+      //console.log(result);
       res.json(result.data);
     })
     .catch((err) => {
