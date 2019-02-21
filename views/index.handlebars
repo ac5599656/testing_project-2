@@ -1,25 +1,28 @@
-<div class="container">
-        
-        <div class="jumbotron">
-            <div class="row">
-                <p>HandleBar</p>
-            </div>
-        </div>
+<div class="containerFluid">
+  <div id="homepage">
+
+    {{> bg-block}}
+    <div class="row">
+      <div class="col-md-7 text-light">
+
+      </div>
+      <div class="col-md-5">
+
+        {{!-- These will take user to login page or sign up page --}}
+        {{!-- <div id="indexbuttons-container"> --}}
+        {{> bgoverlay-block}}
+        {{!-- <div class="btn-group-vertical">
+          <button type="button" class="btn btn-light btn-lg mt-5" id="loginbutton"
+            onclick="window.location.href = 'login.handlebars';">Log In</button>
+
+          <button type="button" class="btn btn-light btn-lg mt-5" id="signupbutton"
+            onclick="window.location.href = 'signup.handlebars';">Sign Up</button>
+        </div> --}}
+        {{!-- </div>  --}}
+
+      </div>
     </div>
-    <div class="container">
-            <div id="homepage"> 
-            <div class="row">
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-6">
-                <button type="button" class="btn btn-outline-dark btn-lg mt-5" id="loginbutton" onclick="window.location.href = 'login.handlebars';">Log In</button>
-
-                <button type="button" class="btn btn-outline-dark btn-lg mt-5" id="signupbutton" onclick="window.location.href = 'signup.handlebars';">Sign Up</button>
-                </div>
-            </div>
-        </div>  
-    </div>
+  </div>
 
 
 
@@ -36,7 +39,7 @@
 
 
 
-{{!-- <div id="home">
+  {{!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
