@@ -1,24 +1,33 @@
+{{!-- Sign up page where user can start an account --}}
 <div class="container">
-        <div id="signuppage">
-            <div class="row">
-                <form class="create-signup-form">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="name" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    {{!-- <div class="checkbox">
-                        <label><input type="checkbox"> Remember me</label>
-                    </div> --}}
-                    <button type="submit" class="btn btn-outline-dark" id="signupsubmit">Submit</button>
-                </form>
-            </div>
+    <div id="signuppage">
+        <div class="row">
+            <form class="create-signup-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" id="age" required>
+                </div>
+                <div class="form-group">
+                    <label class="radio-inline mr-3"><input type="radio" name="optradio" checked>Male</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Female</label>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-dark" id="signupsubmit">Submit</button>
+            </form>
         </div>
     </div>
+</div>

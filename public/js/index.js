@@ -1,42 +1,77 @@
-$(".create-login-form").on("submit", function(event) {
-  event.preventDefault();
+// $(".create-login-form").on("submit", function(event) {
+//   event.preventDefault();
 
-  newLogIn = {
-    email: $("#email").val().trim(),
-    password: $("pwd").val().trim()
-  };
+//   newLogIn = {
+//     email: $("#email").val().trim(),
+//     password: $("pwd").val().trim()
+//   };
 
-  $.ajax("/Logins",  {
-    type: "POST",
-    data: newLogIn
-  }).then(
-    function() {
-      console.log("New Log In");
+//   $.ajax("/Logins",  {
+//     type: "POST",
+//     data: newLogIn
+//   }).then(
+//     function() {
+//       console.log("New Log In");
       
-    }
-  );
-});
+//     }
+//   );
+// });
 
-$(".create-signup-form").on("submit", function(event) {
-  event.preventDefault();
+// $(".create-signup-form").on("submit", function(event) {
+//   event.preventDefault();
 
-  newSignUp = {
-    name: $("#name").val().trim(),
-    email: $("#email").val().trim(),
-    password: $("#pwd").val().trim()
-  };
+//   newSignUp = {
+//     name: $("#name").val().trim(),
+//     email: $("#email").val().trim(),
+//     password: $("#pwd").val().trim(),
+//     age: $("#age").val().trim(),
+//     location: $("#location").val().trim()
+//   };
 
-  $.ajax("/Logins", {
-    type: "POST",
-    data: newSignUp
-  }).then(
-    function() {
-      console.log("New User");
-    }
-  );
-});
+//   $.ajax("/Logins", {
+//     type: "POST",
+//     data: newSignUp
+//   }).then(
+//     function() {
+//       console.log("New User");
+//     }
+//   );
+// });
 
+// $(".create-comment-area").on("button", function(event) {
+//   event.preventDefault();
 
+//   newComment = {
+//     comment: $("#comment").val().trim()
+//   };
+
+ 
+//   $.ajax("/Comments", {
+//     type: "POST",
+//     data: newComment
+//   }).then(
+//     function() {
+//       console.log("New Comment");
+//     }
+//   );
+// });
+
+// $(".create-fav-beer").on("button", function(even) {
+//   event.preventDefault();
+
+//   newBeer = {
+//     beer: $("#favbeerinput").val().trim()
+//   };
+
+//   $.ajax("/", {
+//     type: "POST",
+//     data: newBeer
+//   }).then(
+//     function() {
+//       console.log("New Beer");
+//     }
+//   );
+// });
 
 
 
