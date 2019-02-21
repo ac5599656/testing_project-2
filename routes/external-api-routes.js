@@ -20,7 +20,7 @@ module.exports = function(app) {
       abv: ${abv}
       descript: ${descript}
       `);
-      res.json(result.data);
+      res.json(name);
     })
     .catch((err) => {
       console.log(err);
@@ -28,11 +28,10 @@ module.exports = function(app) {
   })
 
   app.get("/api/location", function(req, res) {
-    console.log(process.env);
-    const queryURL = `http://api.ipstack.com/check?access_key=${keys.ipStackKey}`;
+    const queryURL = `http://api.ipstack.com/check?access_key=${keys.ipStackKey.ipStackKey}`;
     axios.get(queryURL)
     .then((result) => {
-      console.log(result);
+      //console.log(result);
       res.json(result.data);
     })
     .catch((err) => {
