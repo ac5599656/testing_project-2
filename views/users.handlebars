@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {{!-- Log out button in the header --}}
 <div id="user-header-container">
     <div id="logout-container">
@@ -42,3 +43,49 @@
 </div>
 
 </div>
+=======
+ {{!-- Log out button in the header --}}
+<div id="user-header-container">
+<div id="logout-container">
+<a class="logoutbutton" href="index.handlebars">Log Out</a>
+</div>
+{{!-- Name of user shows up --}}
+<div id='personal-info-container'>
+    <div id="info-tightener">
+    <div id="personal-name">{{name}}</div id="personal-name">
+    <div id="details-container">
+    <span>{{age}}</span>
+    <span>|</span>
+    <span>{{location}}</span>
+    </div>
+    </div>
+    {{!-- See if this is possible --}}
+</div>
+</div>
+
+<div class="postContainer">
+    <h2>Posts</h2>
+    {{!-- Posts get posted here --}}
+</div>
+    {{!-- Text area to leave comments --}}
+    <form class="create-post-area" id="post-area">
+        <div class="form-group">
+            <label for="post">Post:</label>
+            <textarea class="form-control" rows="5" id="post"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-dark btn-lg something" id="postbutton">Post</button>
+    </form>
+</div>
+{{!-- Can choose the beer they are drinking to post that from the API --}}
+<div class="favbeergroup">
+    <form class="create-fav-beer">
+    <button type="button" class="btn btn-outline-dark btn-lg" id-"favbeerbutton">Add Favorite Beer</button>
+    <div class="form-group">
+        <label for="favbeer"></label>
+        <input type="favbeer" class="form-control" id="favbeerinput">
+        </form>
+    </div>
+</div>
+</div>
+
+>>>>>>> Greg

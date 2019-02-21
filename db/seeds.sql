@@ -22,13 +22,13 @@ VALUES (
     "Crown Royal", "whiskey", 40, 1.5
 );
 
-INSERT INTO people (`name`, email, age, gender, height, `weight`)
+INSERT INTO people (`name`, email, age, gender)
 VALUES (
-    "Anne", "ac5599656@gmail.com", 40, 'Female'
+    "Anne", "email#1@gmail.com", 40, 'Female'
 ),
 (
-    "Bonnie", "bonnieacuna@gmail.com", 37, 'Female'
+    "Bonnie", "email#2@gmail.com", 37, 'Female'
 ),
 (
-    "Greg", "gregmash12@gmail.com", 29, 'Male'
+    "Greg", "email#3@gmail.com", 29, 'Male'
 );

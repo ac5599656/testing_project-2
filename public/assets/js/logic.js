@@ -1,21 +1,4 @@
 
-
- 
-
-
-$("#test").on("click", brew);
-
-function brew(event) {
-    event.preventDefault();
-    const key = "8e247686caec4c01ba0d5ca72a61e719";
-    let search = "heineken";
-    const url = `http://api.brewerydb.com/v2/?${search}/?key=${key}`;
-
-    $.get(url, function (data, status) {
-        console.log(data);
-    });
-};
-
 let drink_num;
 let bav;
 switch (weight) {
