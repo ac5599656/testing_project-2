@@ -106,9 +106,22 @@ $(document).ready(function () {
     window.location.href = "/users?post_id=" + currentPost.id;
   };
 
+
+  function getLocation() {
+    $.ajax({
+      method: "GET",
+      url: "/api/location"
+    })
+      .then(function(data) {
+        console.log(data);
+        console.log(`${data.city}, ${data.region_code}`);
+      });
+  };
+  
+
   //================================ Main Process =======================================
   //when the post form is filled out and submitted execute a new post
-  $("#post-area").on("submit", function (event) {
+  $(".create-comment-textarea").on("submit", function (event) {
     event.preventDefault();
     // create new post body with form content
     const newPost = {
@@ -124,6 +137,7 @@ $(document).ready(function () {
 
 
   /* global moment */
+  $("#locationButton").on("click", getLocation);
 
 
   //var postCategorySelect = $("#category");
