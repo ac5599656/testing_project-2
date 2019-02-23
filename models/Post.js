@@ -13,19 +13,19 @@ module.exports = (sequelize, DataTypes) => {
         },
         favBeer: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         favBar: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         }
     });
     Post.associate = (models) => {
-         Post.belongsTo(models.User, {
+        Post.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
-         });
+        });
     };
     // Post.associate = (models) => {
     //     Post.hasMany(models.Comment, {

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Angel1Acuna",
+    "password": "Kyldopen",
     "database": "alcoholic_beverages_db",
     "host": "localhost",
     "dialect": "mysql"
