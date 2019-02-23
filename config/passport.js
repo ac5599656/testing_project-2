@@ -11,7 +11,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  db.Users.findByPk(id)
+  db.User.findByPk(id)
     .then(user => {
       done(null, user);
     })
@@ -28,7 +28,7 @@ passport.use(
     (email, password, done) => {
       console.log("asdhfjlasjdflajsdf;", email);
       // Match user
-      db.Users.findOne({
+      db.User.findOne({
         where: {
           email: email
         }

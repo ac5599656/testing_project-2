@@ -2,7 +2,6 @@
 $(document).ready(function () {
   //================================ Global =======================================
   getInfo();
-  console.log($(this));
   // Variable to hold our posts
   let posts;
   // postContainer holds all of our posts

@@ -79,7 +79,7 @@ authRouter.post("/signup", (req, res) => {
     });
   } else {
     console.log("I bet we see this");
-    db.Users.findOne({
+    db.User.findOne({
       where: {
         email: email
       }
@@ -114,7 +114,7 @@ authRouter.post("/signup", (req, res) => {
               throw err;
             }
             newUser.password = hash;
-            db.Users.create(newUser)
+            db.User.create(newUser)
               .then(user => {
                 res.redirect("/auth/login");
               })

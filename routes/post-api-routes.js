@@ -8,8 +8,8 @@ module.exports = (app) => {
         }
 
         db.Post.findAll({
-            //where: query,
-            //include: db.Person
+            where: query,
+            include: db.Person
         }).then((dbPost) => {
             res.json(dbPost)
         });
@@ -20,7 +20,7 @@ module.exports = (app) => {
             where: {
                 id: req.params.id
             },
-            //include: db.Person
+            include: db.Person
         }).then((dbPost) => {
             res.json(dbPost)
         });

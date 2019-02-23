@@ -1,7 +1,7 @@
 // var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(sequelize, DataTypes) {
-    let Users = sequelize.define("Users", {
+    let User = sequelize.define("User", {
       firstname: {
         type: DataTypes.STRING
         // allowNull: false,
@@ -46,13 +46,13 @@ module.exports = function(sequelize, DataTypes) {
         // }
       }
     });
-    // Users.associate = (models) => {
-    //   Users.hasMany(models.Post, {
-    //     onDelete: "cascade"
-    //   })
-    // };
-    // Users.associate = (models) => {
-    //   Users.hasMany(models.Comment, {
+    User.associate = (models) => {
+      User.hasMany(models.Post, {
+        onDelete: "cascade"
+      })
+    };
+    // User.associate = (models) => {
+    //   User.hasMany(models.Comment, {
     //     onDelete: "cascade"
     //   })
     // };
@@ -73,5 +73,5 @@ module.exports = function(sequelize, DataTypes) {
     //     user.password = user.generateHash(user.password);
     // });
   
-    return Users;
+    return User;
   };
