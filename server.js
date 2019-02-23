@@ -95,6 +95,7 @@ app.set("port", process.env.PORT || 3000);
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
+let syncOptions = {force: true};
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }

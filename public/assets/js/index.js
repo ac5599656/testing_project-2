@@ -136,9 +136,9 @@ $(document).ready(function () {
     const newPost = {
       body: $("#post-comment").val().trim(),
     };
-      let replacefavBar = newPost.favBar.split(' ').join('+');
-      let favBar = {};
-      favBar.push(replacefavBar);
+      // let replacefavBar = newPost.favBar.split(' ').join('+');
+      // let favBar = {};
+      // favBar.push(replacefavBar);
     // post the content to posts and take the user to the main page
     $.post("/api/posts", newPost,
       function () {
