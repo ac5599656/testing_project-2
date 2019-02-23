@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "null",
+      "password": "Angel1Acuna",
       "database": "alcoholic_beverages_db",
       "host": "localhost",
       "dialect": "mysql"

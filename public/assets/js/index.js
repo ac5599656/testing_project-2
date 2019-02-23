@@ -113,14 +113,21 @@ $(document).ready(function () {
     // create new post body with form content
     const newPost = {
       body: $("#post").val().trim(),
+      favBeer: $("#favbeerinput").val().trim(),
+      favBar: $("#favbarinput").val().trim(),
     };
+      let replacefavBar = newPost.favBar.split(' ').join('+');
+      let favBar = {};
+      favBar.push(replacefavBar);
     // post the content to posts and take the user to the main page
     $.post("/api/posts", newPost,
       function () {
-        window.location.href = "/users";
+        window.location.href = "/dashboard";
       }
     );
   });
+
+  
 
 
   /* global moment */

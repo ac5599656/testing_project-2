@@ -10,13 +10,21 @@ module.exports = (sequelize, DataTypes) => {
         time: {
             type: DataTypes.TIME,
             defaultValue: DataTypes.NOW
+        },
+        favBeer: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        favBar: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     });
     Post.associate = (models) => {
          Post.belongsTo(models.Person, {
             foreignKey: {
-                defaultValue: 1,
-                allowNull: false
+            defaultValue: 1,
+            allowNull: false
             }
          });
     };
@@ -25,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: {
                 defaultValue: 1,
                 allowNull: false
-            }
+                }
         });
     };
     return Post;
