@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    let Users = sequelize.define("Users", {
+    let User = sequelize.define("User", {
       firstname: {
         type: DataTypes.STRING
         // allowNull: false,
@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
     //     user.password = user.generateHash(user.password);
     // });
   
-    return Users;
+    return User;
   };
   
   
