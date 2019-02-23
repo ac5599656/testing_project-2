@@ -1,7 +1,8 @@
 //Upon the document finishing to load...
 $(document).ready(function () {
-
   //================================ Global =======================================
+  getInfo();
+  console.log($(this));
   // Variable to hold our posts
   let posts;
   // postContainer holds all of our posts
@@ -15,14 +16,13 @@ $(document).ready(function () {
       personId = "/?person_id=" + personId;
     };
     $.get("/api/posts" + personId, function (data) {
-      console.log("Posts", data);
       posts = data;
-      if (!posts || !posts.length) {
-        displayEmpty(person);
-      }
-      else {
+      // if (!posts || !posts.length) {
+      //   //displayEmpty(person);
+      // }
+      // else {
         initializeRows();
-      }
+    //}
     });
   };
 
@@ -41,10 +41,10 @@ $(document).ready(function () {
   function initializeRows() {
     postContainer.empty();
     var postsToAdd = [];
-    for (var i = 0; i < posts.length; i++) {
+    for (let i = posts.length - 1; i >= 0; i--) {
       postsToAdd.push(createNewRow(posts[i]));
     }
-    postContainer.append(postsToAdd);
+    postContainer.prepend(postsToAdd);
   };
 
   function createNewRow(post) {
@@ -103,41 +103,43 @@ $(document).ready(function () {
       .parent()
       .parent()
       .data("post");
-    window.location.href = "/users?post_id=" + currentPost.id;
+    window.location.href = "/dashboard?post_id=" + currentPost.id;
   };
 
 
-  function getLocation() {
+  function getInfo() {
+    console.log($(this));
+    //let age = $("#ageDisplay");
+    //age.text(`${age}`)
     $.ajax({
       method: "GET",
       url: "/api/location"
     })
       .then(function(data) {
-        console.log(data);
-        console.log(`${data.city}, ${data.region_code}`);
+        let location = $("#location");
+        location.text(`${data.city}, ${data.region_code}`);
       });
   };
   
 
   //================================ Main Process =======================================
   //when the post form is filled out and submitted execute a new post
-  $(".create-comment-textarea").on("submit", function (event) {
+  $("#commentbutton").on("click", function (event) {
     event.preventDefault();
     // create new post body with form content
     const newPost = {
-      body: $("#post").val().trim(),
+      body: $("#post-comment").val().trim(),
     };
     // post the content to posts and take the user to the main page
     $.post("/api/posts", newPost,
       function () {
-        window.location.href = "/users";
+        location.reload();
       }
     );
   });
 
 
   /* global moment */
-  $("#locationButton").on("click", getLocation);
 
 
   //var postCategorySelect = $("#category");

@@ -1,22 +1,60 @@
-{{!-- Log in page where user can log in --}}
-<div class="container">
-        <div id="loginpage">
-            {{> bg-block}}
+<!-- <div id="profileHeader" class="card"> -->
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/auth/login">Login</a>
+      <a class="nav-item nav-link" href="/auth/signup">Signup</a>
+       <a class="nav-item nav-link" href="/auth/login">Logout</a>
+     
+    </div>
+  </div> --}}
+  {{> nav}}
+</nav>
+<div id="log">
+    <nav>
+        <div id="navlog" class="nav-wrapper">
+            <a href="/" class="brand-logo">Beer App</a>
+        </div>
+    </nav>
+    <div class ="row">
+        <div class="col-lg-12">
+            {{#if successMsg}}
+                <div class="alert alert-success"><i class = "icon-remove-sign icon-large">{{successMsg}}</i></div>
+            {{/if}}
+        </div>
+   
+    <form name="myForm" action="/auth/login" onsubmit="return validateForm()" method="post">
+        <!-- <div class="row"> -->
+        <div class="container" id="mainlogin">
+            <h3>Log in </h3>
+            
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="email">Email:</label>
+                        <input id="email" type="email" class="validate" name="email" required>
+                        
+                    </div>
+                </div>
+            
+          
             <div class="row">
-                {{> bgoverlay-block}}
-                <form class="create-login-form">
-                    <div class="form-group">
-                        <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" required>
-                    </div>
+                <div class="input-field col s6">
+                   <label for="password">Password:</label>
+                    <input id="password" type="password" class="validate" name="password" required>
                     
-                    <button type="submit" class="btn btn-outline-dark" id="loginsubmit">Submit</button>
-                </form>
-
+                </div>
+            </div>
+            <div class="row">
+              
+                {{!-- <a class="btn" onclick="Materialize.toast<img src='/assets/images/plane.gif'>">Log in</a> --}}
+                <button class="btn" type="submit" value="Log in">Log in </button>
             </div>
         </div>
-    </div>
+    </form>
+</div>

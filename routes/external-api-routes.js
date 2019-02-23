@@ -31,7 +31,6 @@ module.exports = function(app) {
     const queryURL = `http://api.ipstack.com/check?access_key=${keys.ipStackKey.ipStackKey}`;
     axios.get(queryURL)
     .then((result) => {
-      //console.log(result);
       res.json(result.data);
     })
     .catch((err) => {

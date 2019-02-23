@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
     Comment.associate = (models) => {
-        Comment.belongsTo(models.Person, {
+        Comment.belongsTo(models.Users, {
             foreignKey: {
                 defaultValue: 1,
                 allowNull: false

@@ -1,0 +1,64 @@
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+           
+            <a class="nav-item nav-link" href="/login">Login</a>
+            <a class="nav-item nav-link" href="/signup">Signup</a>
+             <a class="nav-item nav-link" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav> --}}
+{{> nav}}
+<div>Dashboard</div>
+{{#if successMsg}}
+<div class="alert alert-success"><i class="icon-remove-sign icon-large">{{successMsg}}</i></div>
+{{/if}}
+</div>
+
+
+{{!-- Log out button in the header --}}
+<div id="user-header-container">
+    <div id="logout-container">
+        <a class="logoutbutton text-white" href="index.handlebars">Log Out</a>
+    </div>
+    {{!-- Name of user shows up --}}
+    <div id='personal-info-container'>
+        <div id="info-tightener">
+            <div id="personal-name">{{name}}</div id="personal-name">
+            <div id="details-container">
+                <span id="ageDisplay">{{age}}</span>
+                <span></span>
+                <span id="location">{{location}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- Text area to leave comments --}}
+<form class="postForm">
+    <label for="post">Post:</label>
+    <textarea class="form-control" rows="5" id="post-comment"></textarea>
+    {{!-- </div> --}}
+    {{!-- </form> --}}
+    {{!-- Can choose the beer they are drinking to post that from the API --}}
+    {{!-- <div class="favbeergroup">
+        <form class="create-fav-beer"> --}}
+    {{!-- <button type="button" class="btn btn-outline-dark btn-lg" id-"favbeerbutton">Add Favorite Beer</button> --}}
+    {{!-- <div class="form-group">
+                <label for="favbeer"></label> --}}
+    <input type="favbeer" class="form-control" id="favbeerinput">
+    <button type="button" class="btn btn-outline-dark btn-lg mt-3" id="commentbutton">Post</button>
+</form>
+{{!-- Comments get posted here --}}
+<div class="postContainer">
+    <h2>Comments</h2>
+</div>
+</div>
+
+</div>
