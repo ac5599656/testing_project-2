@@ -93,16 +93,13 @@ h2 {
 }
 
 #mainlogin label {
-  display: inline-block;
   float: left;
-  
   width: 250px;
   margin-left: 170px;
   margin-right: 50px;
 }
 
 #mainlogin input {
-display: inline-block;
 float: left;
 margin-left: 170px;
 margin-right: 50px;
