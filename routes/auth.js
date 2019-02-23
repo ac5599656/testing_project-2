@@ -24,13 +24,9 @@ let passport = require("passport");
 //     res.render('index');
 // });
 
-// authRouter.get("/", function(req, res) {
-  // db.Post.create({body: 'hi',
-  // time: new Date(),
-  // favBeer: 'gluten free',
-  // favBar: 'home'}).then(res=>console.log(res)).catch(err => console.log(err));
-//   res.render("index");
-// });
+authRouter.get("/", function(req, res) {
+  res.render("index");
+});
 
 authRouter.get("/signup", function(req, res) {
   res.render("signup");
@@ -45,7 +41,7 @@ authRouter.get("/login", function(req, res) {
 // })
 
 authRouter.post("/signup", (req, res) => {
-  const { firstname, lastname, email, password, password2 } = req.body;
+  const { firstname, lastname, email, age, gender, password, password2 } = req.body;
   let errors = [];
   console.log(`${firstname}`);
 
@@ -76,12 +72,14 @@ authRouter.post("/signup", (req, res) => {
       firstname,
       lastname,
       email,
+      age,
+      gender,
       password,
       password2
     });
   } else {
     console.log("I bet we see this");
-    db.Users.findOne({
+    db.User.findOne({
       where: {
         email: email
       }
@@ -95,6 +93,8 @@ authRouter.post("/signup", (req, res) => {
           firstname,
           lastname,
           email,
+          age,
+          gender,
           password,
           password2
         });
@@ -103,6 +103,8 @@ authRouter.post("/signup", (req, res) => {
           firstname,
           lastname,
           email,
+          age,
+          gender,
           password
         };
 
@@ -112,7 +114,7 @@ authRouter.post("/signup", (req, res) => {
               throw err;
             }
             newUser.password = hash;
-            db.Users.create(newUser)
+            db.User.create(newUser)
               .then(user => {
                 res.redirect("/auth/login");
               })
@@ -129,8 +131,7 @@ authRouter.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/dashboard",
-    failureRedirect: "/auth/login",
-    failureFlash: true
+    failureRedirect: "/auth/login"
   })
 );
 

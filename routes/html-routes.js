@@ -3,13 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    console.log('hitting this')
-  //   db.Post.create({body: 'hi',
-  // time: new Date(),
-  // favBeer: 'gluten free',
-  // favBar: 'home'}).then(res=>console.log(res)).catch(err => console.log(err));
-    res.render('index', {name:'Some person with a reallyl reallly long name', age:25, location:'Washington D.C.'});
-
+    res.render('index');
     // db.Example.findAll({}).then(function(dbExamples) {
     //   res.render("index", {
     //     msg: "Welcome!",

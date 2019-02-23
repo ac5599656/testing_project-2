@@ -1,3 +1,4 @@
+// var db = require("../models");
 const express = require("express");
 const authRouter = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
@@ -14,7 +15,3 @@ authRouter.get("/dashboard", ensureAuthenticated, (req, res) =>
 );
 
 module.exports = authRouter;
-
-
-
-

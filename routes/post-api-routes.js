@@ -1,16 +1,23 @@
 const db = require("../models");
+const {ensureAuthenticated} = require('../config/auth');
+
 
 module.exports = (app) => {
-    app.get("/api/posts", (req, res) => {
-        const query = {};
-        if (req.query.person_id) {
-            query.Person_id = req.query.person_id
-        }
+    app.get("/api/posts", ensureAuthenticated, (req, res) => {
+        let {user} = req
+        const query = {
+            //UserId : user.id
+        };
 
         db.Post.findAll({
-            //where: query,
-            //include: db.Person
+            where: query,
+            include: db.User
         }).then((dbPost) => {
+            for(var i = 0; i < dbPost.length; i++){
+                console.log(dbPost[i]);
+                dbPost[i].dataValues.currentUser = req.user.id;
+            }
+            console.log(dbPost);
             res.json(dbPost)
         });
     });
@@ -20,19 +27,32 @@ module.exports = (app) => {
             where: {
                 id: req.params.id
             },
-            //include: db.Person
+            include: db.User
         }).then((dbPost) => {
             res.json(dbPost)
         });
     });
 
-    app.post("/api/posts", (req, res) => {
-        db.Post.create(req.body).then((dbPost) => {
+    app.post("/api/posts", ensureAuthenticated, (req, res) => {
+        let data = {
+            ...req.body,
+            UserId: req.user.id
+        }
+        db.Post.create(data).then((dbPost) => {
             res.json(dbPost)
         });
     });
 
-    app.delete("/api/posts/:id", (req, res) => {
+    app.delete("/api/posts/:id", ensureAuthenticated, (req, res) => {
+        if(ensureAuthenticated) {
+            db.Post.destroy( {
+                where: {
+                    id: req.params.id
+                }
+            }).then((dbPost) => {
+                res.json(dbPost)
+            });
+        }
         db.Post.destroy( {
             where: {
                 id: req.params.id
