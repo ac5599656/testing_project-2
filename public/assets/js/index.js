@@ -53,8 +53,6 @@ $(document).ready(function () {
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
-    
-    
     var deleteBtn = $("<button>");
     deleteBtn.text("Delete");
     deleteBtn.addClass("delete btn btn-danger");
@@ -78,8 +76,6 @@ $(document).ready(function () {
     newPostBody.text(post.body);
     newPostDate.text(formattedDate);
     newPostTitle.append(newPostDate);
-    console.log(post.currentUser);
-    console.log(post.UserId);
     if (post.UserId === post.currentUser){
     newPostCardHeading.append(deleteBtn);
     }
