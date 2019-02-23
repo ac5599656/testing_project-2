@@ -131,8 +131,7 @@ authRouter.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/dashboard",
-    failureRedirect: "/auth/login",
-    failureFlash: true
+    failureRedirect: "/auth/login"
   })
 );
 

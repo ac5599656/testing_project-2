@@ -48,21 +48,23 @@ $(document).ready(function () {
 
   function createNewRow(post) {
     var formattedDate = new Date(post.createdAt);
-    //formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm A");
     var newPostCard = $("<div>");
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
+    
+    
     var deleteBtn = $("<button>");
     deleteBtn.text("Delete");
     deleteBtn.addClass("delete btn btn-danger");
-    var editBtn = $("<button>");
-    editBtn.text("Edit");
-    editBtn.addClass("edit btn btn-info");
+    //var editBtn = $("<button>");
+    //editBtn.text("Edit");
+    //editBtn.addClass("edit btn btn-info");
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostAuthor = $("<h5>");
-    newPostAuthor.text("Written by: ");
+    newPostAuthor.text("Written by: " + post.User.firstname + " " + post.User.lastname);
     newPostAuthor.css({
       float: "right",
       color: "blue",
@@ -76,14 +78,19 @@ $(document).ready(function () {
     newPostBody.text(post.body);
     newPostDate.text(formattedDate);
     newPostTitle.append(newPostDate);
+    console.log(post.currentUser);
+    console.log(post.UserId);
+    if (post.UserId === post.currentUser){
     newPostCardHeading.append(deleteBtn);
-    newPostCardHeading.append(editBtn);
+    }
+    //newPostCardHeading.append(editBtn);
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostAuthor);
     newPostCardBody.append(newPostBody);
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
+    
     return newPostCard;
   };
 
@@ -115,8 +122,12 @@ $(document).ready(function () {
       url: "/api/location"
     })
       .then(function(data) {
-        let location = $("#location");
+        let location = $("#locationDisplay");
+        let age = $("#ageDisplay");
+        let name = $("#nameDisplay");
         location.text(`${data.city}, ${data.region_code}`);
+        age.text(user.age);
+        name.text(`${user.firstname} ${user.lastname}`);
       });
   };
   

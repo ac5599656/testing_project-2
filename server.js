@@ -6,7 +6,6 @@ let cookieParser = require("cookie-parser");
 let authRouter = require("./routes/auth.js");
 let db = require("./models");
 let session = require("express-session");
-let flash = require("connect-flash");
 let expressValidator = require("express-validator");
 let path = require("path");
 let passport = require("passport");
@@ -40,7 +39,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//app.use(flash());
 app.use(authRouter);
 
 // In this example, the formParam value is going to get morphed into form body format useful for printing.

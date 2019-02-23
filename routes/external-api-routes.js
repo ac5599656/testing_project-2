@@ -1,6 +1,8 @@
 const db = require("../models");
 const axios = require("axios");
 const keys = require("../config/keys");
+const {ensureAuthenticated} = require('../config/auth');
+
 
 module.exports = function (app) {
   app.get("/api/beer", function (req, res) {
@@ -27,7 +29,8 @@ module.exports = function (app) {
       });
   })
 
-  app.get("/api/location", function (req, res) {
+  app.get("/api/location", ensureAuthenticated, function (req, res) {
+    let {user} = req
     const queryURL = `http://api.ipstack.com/check?access_key=${keys.ipStackKey.ipStackKey}`;
     axios.get(queryURL)
       .then((result) => {
