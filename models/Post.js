@@ -10,23 +10,29 @@ module.exports = (sequelize, DataTypes) => {
         time: {
             type: DataTypes.TIME,
             defaultValue: DataTypes.NOW
+        },
+        favBeer: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        favBar: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     });
     Post.associate = (models) => {
-         Post.belongsTo(models.Person, {
+         Post.belongsTo(models.User, {
             foreignKey: {
-                defaultValue: 1,
                 allowNull: false
             }
          });
     };
-    Post.associate = (models) => {
-        Post.hasMany(models.Comment, {
-            foreignKey: {
-                defaultValue: 1,
-                allowNull: false
-            }
-        });
-    };
+    // Post.associate = (models) => {
+    //     Post.hasMany(models.Comment, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
     return Post;
 };
