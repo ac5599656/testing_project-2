@@ -9,19 +9,19 @@ $(document).ready(function () {
   //================================ Functions =======================================
 
   // This function grabs posts from the database and updates the view
-  function getPosts(person) {
-    personId = person || "";
-    if (personId) {
-      personId = "/?person_id=" + personId;
+  function getPosts(user) {
+    userId = user || "";
+    if (userId) {
+      userId = "/?person_id=" + userId;
     };
-    $.get("/api/posts" + personId, function (data) {
+    $.get("/api/posts" + userId, function (data) {
       posts = data;
-      // if (!posts || !posts.length) {
-      //   //displayEmpty(person);
-      // }
-      // else {
+      if (!posts || !posts.length) {
+        displayEmpty(person);
+      }
+      else {
         initializeRows();
-    //}
+    }
     });
   };
 
@@ -56,10 +56,18 @@ $(document).ready(function () {
     var deleteBtn = $("<button>");
     deleteBtn.text("Delete");
     deleteBtn.addClass("delete btn btn-danger");
-    //var editBtn = $("<button>");
-    //editBtn.text("Edit");
-    //editBtn.addClass("edit btn btn-info");
-    var newPostTitle = $("<h2>");
+    var commentBtn = $("<button>");
+    commentBtn.text("Comment");
+    commentBtn.addClass("addComment btn btn-info");
+    // var newPostLink = $("<a>");
+    // newPostLink.href = "google.com";
+    // newPostLink.innerHTML = "Link";
+
+    a = document.createElement('a');
+    a.href =  'google.com'; // Insted of calling setAttribute 
+    a.innerHTML = "Link" // <a>INNER_TEXT</a>
+
+
     var newPostDate = $("<small>");
     var newPostAuthor = $("<h5>");
     newPostAuthor.text("Written by: " + post.User.firstname + " " + post.User.lastname);
@@ -75,14 +83,14 @@ $(document).ready(function () {
     //newPostTitle.text("");
     newPostBody.text(post.body);
     newPostDate.text(formattedDate);
-    newPostTitle.append(newPostDate);
+    a.append(newPostDate);
     if (post.UserId === post.currentUser){
     newPostCardHeading.append(deleteBtn);
     }
-    //newPostCardHeading.append(editBtn);
-    newPostCardHeading.append(newPostTitle);
+    newPostCardHeading.append(a);
     newPostCardHeading.append(newPostAuthor);
     newPostCardBody.append(newPostBody);
+    newPostCardBody.append(commentBtn);
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
@@ -104,13 +112,26 @@ $(document).ready(function () {
     var currentPost = $(this)
       .parent()
       .parent()
-      .data("post");
-    window.location.href = "/dashboard?post_id=" + currentPost.id;
+      //.data("post");
+      //console.log(currentPost);
+
+      const newTextbox = $("<textarea>");
+      newTextbox.attr('id', "comment-body");
+      const newSubmitButton = $("<button>");
+      newSubmitButton.addClass("comment-submit btn btn-danger");
+      newSubmitButton.text("Submit");
+      newSubmitButton.attr('id', "commentSubmitButton")
+
+      currentPost.append(newTextbox);
+      currentPost.append(newSubmitButton);
+      
+
+
+    //window.location.href = "/dashboard?post_id=" + currentPost.id;
   };
 
 
   function getInfo() {
-    console.log($(this));
     //let age = $("#ageDisplay");
     //age.text(`${age}`)
     $.ajax({
@@ -147,6 +168,24 @@ $(document).ready(function () {
     );
   });
 
+  $("#commentSubmitButton").on("click", function (event) {
+    event.preventDefault();
+    console.log("this is working now");
+    // create new post body with form content
+    const newComment = {
+      body: $("#comment-body").val().trim(),
+    };
+      // let replacefavBar = newPost.favBar.split(' ').join('+');
+      // let favBar = {};
+      // favBar.push(replacefavBar);
+    // post the content to posts and take the user to the main page
+    $.post("/api/comments", newComment,
+      function () {
+        //location.reload();
+      }
+    );
+  });
+
   
 
 
@@ -156,7 +195,7 @@ $(document).ready(function () {
   //var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handlePostDelete);
-  $(document).on("click", "button.edit", handlePostEdit);
+  $(document).on("click", "button.addComment", handlePostEdit);
 
 
   // The code below handles the case where we want to get blog posts for a specific author
