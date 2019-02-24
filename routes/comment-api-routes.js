@@ -3,13 +3,13 @@ const db = require("../models");
 module.exports = (app) => {
     app.get("/api/comments", (req, res) => {
         const query = {};
-        if (req.query.person_id) {
-            query.Person_id = req.query.person_id
+        if (req.query.user_id) {
+            query.User_id = req.query.user_id
         }
 
         db.Comment.findAll({
             where: query,
-            include: [db.Person, db.Post]
+            include: [db.User, db.Post]
         }).then((dbComment) => {
             res.json(dbComment)
         });
@@ -20,7 +20,7 @@ module.exports = (app) => {
             where: {
                 id: req.params.id
             },
-            include: [db.Person, db.Post]
+            include: [db.User, db.Post]
         }).then((dbComment) => {
             res.json(dbComment)
         });

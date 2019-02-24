@@ -26,13 +26,13 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+        Post.hasMany(models.Comment, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
-    // Post.associate = (models) => {
-    //     Post.hasMany(models.Comment, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
+
     // };
     return Post;
 };

@@ -12,21 +12,20 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.NOW
         }
     });
+    Comment.associate = (models) => {
+        Comment.belongsTo(models.Post, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+        Comment.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
     // Comment.associate = (models) => {
-    //     Comment.belongsTo(models.Post, {
-    //         foreignKey: {
-    //             defaultValue: 1,
-    //             allowNull: false
-    //         }
-    //     });
-    // };
-    // Comment.associate = (models) => {
-    //     Comment.belongsTo(models.User, {
-    //         foreignKey: {
-    //             defaultValue: 1,
-    //             allowNull: false
-    //         }
-    //     });
+    //    
     // };
     return Comment;
 };

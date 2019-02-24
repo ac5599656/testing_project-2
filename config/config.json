@@ -1,8 +1,7 @@
 {
-<<<<<<< HEAD
     "development": {
       "username": "root",
-      "password": "boulderbadge.",
+      "password": "null",
       "database": "alcoholic_beverages_db",
       "host": "localhost",
       "dialect": "mysql"
@@ -20,25 +19,3 @@
       "dialect": "mysql"
     }
   }
-=======
-  "development": {
-    "username": "root",
-    "password": "Kyldopen",
-    "database": "alcoholic_beverages_db",
-    "host": "localhost",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "testdb",
-    "host": "localhost",
-    "dialect": "mysql",
-    "logging": false
-  },
-  "production": {
-    "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
-  }
-}
->>>>>>> 196705bdd43766a2d8b8f266d692d26db02b3082
