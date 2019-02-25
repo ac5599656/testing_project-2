@@ -2,29 +2,32 @@
 $(document).ready(function () {
   //================================ Global =======================================
   let num = 1;
-  getInfo();
   // Variable to hold our posts
   let posts;
+  let comments;
   // postContainer holds all of our posts
   const postContainer = $(".postContainer");
   //================================ Functions =======================================
 
   // This function grabs posts from the database and updates the view
-  function getPosts(user) {
-    userId = user || "";
-    if (userId) {
-      userId = "/?person_id=" + userId;
-    };
-    $.get("/api/posts" + userId, function (data) {
+  function getPosts() {
+    $.get("/api/posts", function (data) {
       posts = data;
-      if (!posts || !posts.length) {
-        displayEmpty(user);
-      }
-      else {
-        initializeRows();
-    }
+      initializeRows();
     });
   };
+
+  function getComments() {
+    $.get("/api/comments", function (data) {
+      comments = data;
+      var commentsToAdd = [];
+    for (let i = comments.length - 1; i >= 0; i--) {
+      commentsToAdd.push(createNewRow(comments[i]));
+    }
+    postContainer.append(commentsToAdd);
+    console.log(posts);
+  })
+};
 
   //This function does an API call to delete posts
   function deletePost(id) {
@@ -45,6 +48,7 @@ $(document).ready(function () {
       postsToAdd.push(createNewRow(posts[i]));
     }
     postContainer.prepend(postsToAdd);
+    //getComments();
   };
 
   function createNewRow(post) {
@@ -61,14 +65,6 @@ $(document).ready(function () {
     var commentBtn = $("<button>");
     commentBtn.text("Comment");
     commentBtn.addClass("addComment btn btn-info");
-    // var newPostLink = $("<a>");
-    // newPostLink.href = "google.com";
-    // newPostLink.innerHTML = "Link";
-
-    a = document.createElement('a');
-    a.href =  'google.com'; // Insted of calling setAttribute 
-    a.innerHTML = "Link" // <a>INNER_TEXT</a>
-
 
     var newPostDate = $("<small>");
       var newPostAuthor = $("<h4>");
@@ -95,11 +91,9 @@ $(document).ready(function () {
     //newPostTitle.text("");
     newPostBody.text(post.body);
     newPostDate.text(formattedDate);
-    a.append(newPostDate);
     if (post.UserId === post.currentUser){
     newPostCardHeading.prepend(deleteBtn);
     }
-    newPostCardHeading.append(a);
     newPostCardHeading.append(newPostAuthor);
     newPostCardBody.append(newPostBody);
     newPostCardBody.append(commentBtn);
@@ -160,6 +154,11 @@ $(document).ready(function () {
   
 
   //================================ Main Process =======================================
+  //display the user info on the page
+  getInfo();
+  //get the posts for the view
+  getPosts();
+  getComments();
   //when the post form is filled out and submitted execute a new post
   $("#commentbutton").on("click", function (event) {
     event.preventDefault();
@@ -183,7 +182,6 @@ $(document).ready(function () {
 
     var currentPost = $(this)
       .parent()
-      //.parent()
       .data();
 
     // create new post body with form content
@@ -191,10 +189,7 @@ $(document).ready(function () {
       body: $("#comment-body").val().trim(),
       PostId: currentPost.post.id
     };
-      // let replacefavBar = newPost.favBar.split(' ').join('+');
-      // let favBar = {};
-      // favBar.push(replacefavBar);
-    // post the content to posts and take the user to the main page
+     
     $.post("/api/comments", newComment,
       function () {
         location.reload();
@@ -202,28 +197,11 @@ $(document).ready(function () {
     );
   });
 
-  
-
-
-  /* global moment */
-
-
-  //var postCategorySelect = $("#category");
+ 
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handlePostDelete);
   $(document).on("click", "button.addComment", handleComment);
 
 
-  // The code below handles the case where we want to get blog posts for a specific author
-  // Looks for a query param in the url for author_id
-  var url = window.location.search;
-  var personId;
-  if (url.indexOf("?person_id=") !== -1) {
-    personId = url.split("=")[1];
-    getPosts(personId);
-  }
-  // If there's no authorId we just get all posts as usual
-  else {
-    getPosts();
-  }
+  
 });
