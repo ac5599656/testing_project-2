@@ -70,7 +70,6 @@ $(document).ready(function () {
     a.innerHTML = "Link" // <a>INNER_TEXT</a>
 
 
-
     var newPostDate = $("<small>");
       var newPostAuthor = $("<h4>");
       newPostAuthor.text("Written by: " + post.User.firstname + " " + post.User.lastname);
