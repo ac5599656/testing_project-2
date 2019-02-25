@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         });
         Post.hasMany(models.Comment, {
             foreignKey: {
-                allowNull: false
+                allowNull: true,
             }
         });
     };
