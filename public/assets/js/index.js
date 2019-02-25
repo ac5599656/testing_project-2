@@ -56,8 +56,8 @@ $(document).ready(function () {
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
     var deleteBtn = $("<button>");
-    deleteBtn.text("Delete");
-    deleteBtn.addClass("delete btn btn-danger");
+    deleteBtn.text("X");
+    deleteBtn.addClass("delete btn btn-sm");
     var commentBtn = $("<button>");
     commentBtn.text("Comment");
     commentBtn.addClass("addComment btn btn-info");
@@ -70,15 +70,26 @@ $(document).ready(function () {
     a.innerHTML = "Link" // <a>INNER_TEXT</a>
 
 
+
     var newPostDate = $("<small>");
-    var newPostAuthor = $("<h5>");
-    newPostAuthor.text("Written by: " + post.User.firstname + " " + post.User.lastname);
-    newPostAuthor.css({
-      float: "right",
-      color: "blue",
-      "margin-top":
-        "-10px"
-    });
+      var newPostAuthor = $("<h4>");
+      newPostAuthor.text("Written by: " + post.User.firstname + " " + post.User.lastname);
+      newPostAuthor.css({
+        float: "left",
+        color: "orange",
+        "margin-top":
+          "10px",
+        "margin-left": "-10px",
+        
+  
+      });
+      newPostDate.css({
+        float: "right",
+        color: "orange",
+        "margin-top":
+          "15px",
+          
+      });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
     var newPostBody = $("<p>");
@@ -87,7 +98,7 @@ $(document).ready(function () {
     newPostDate.text(formattedDate);
     a.append(newPostDate);
     if (post.UserId === post.currentUser){
-    newPostCardHeading.append(deleteBtn);
+    newPostCardHeading.prepend(deleteBtn);
     }
     newPostCardHeading.append(a);
     newPostCardHeading.append(newPostAuthor);
@@ -115,8 +126,6 @@ $(document).ready(function () {
   // This function figures out which post we want to edit and takes it to the appropriate url
   function handleComment() {
     var currentPost = $(this).parent().parent()
-      
-
       const newTextbox = $("<textarea>");
       newTextbox.attr('id', "comment-body");
       const newSubmitButton = $("<button>");
