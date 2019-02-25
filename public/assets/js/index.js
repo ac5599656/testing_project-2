@@ -1,6 +1,7 @@
 //Upon the document finishing to load...
 $(document).ready(function () {
   //================================ Global =======================================
+  let num = 1;
   getInfo();
   // Variable to hold our posts
   let posts;
@@ -17,7 +18,7 @@ $(document).ready(function () {
     $.get("/api/posts" + userId, function (data) {
       posts = data;
       if (!posts || !posts.length) {
-        displayEmpty(person);
+        displayEmpty(user);
       }
       else {
         initializeRows();
@@ -51,6 +52,7 @@ $(document).ready(function () {
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm A");
     var newPostCard = $("<div>");
     newPostCard.addClass("card");
+    newPostCard.attr("id", num++);
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
     var deleteBtn = $("<button>");
@@ -98,6 +100,9 @@ $(document).ready(function () {
     return newPostCard;
   };
 
+
+  
+
   //This function figures out which post we want to delete and then calls deletePost
   function handlePostDelete() {
     var currentPost = $(this)
@@ -108,12 +113,9 @@ $(document).ready(function () {
   };
 
   // This function figures out which post we want to edit and takes it to the appropriate url
-  function handlePostEdit() {
-    var currentPost = $(this)
-      .parent()
-      .parent()
-      //.data("post");
-      //console.log(currentPost);
+  function handleComment() {
+    var currentPost = $(this).parent().parent()
+      
 
       const newTextbox = $("<textarea>");
       newTextbox.attr('id', "comment-body");
@@ -143,8 +145,8 @@ $(document).ready(function () {
         let age = $("#ageDisplay");
         let name = $("#nameDisplay");
         location.text(`${data.city}, ${data.region_code}`);
-        age.text(user.age);
-        name.text(`${user.firstname} ${user.lastname}`);
+        //age.text(user.age);
+        //name.text(`${user.firstname} ${user.lastname}`);
       });
   };
   
@@ -168,12 +170,18 @@ $(document).ready(function () {
     );
   });
 
-  $("#commentSubmitButton").on("click", function (event) {
+  $(document).on("click", "#commentSubmitButton", function (event) {
     event.preventDefault();
-    console.log("this is working now");
+
+    var currentPost = $(this)
+      .parent()
+      //.parent()
+      .data();
+
     // create new post body with form content
     const newComment = {
       body: $("#comment-body").val().trim(),
+      PostId: currentPost.post.id
     };
       // let replacefavBar = newPost.favBar.split(' ').join('+');
       // let favBar = {};
@@ -181,7 +189,7 @@ $(document).ready(function () {
     // post the content to posts and take the user to the main page
     $.post("/api/comments", newComment,
       function () {
-        //location.reload();
+        location.reload();
       }
     );
   });
@@ -195,7 +203,7 @@ $(document).ready(function () {
   //var postCategorySelect = $("#category");
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handlePostDelete);
-  $(document).on("click", "button.addComment", handlePostEdit);
+  $(document).on("click", "button.addComment", handleComment);
 
 
   // The code below handles the case where we want to get blog posts for a specific author

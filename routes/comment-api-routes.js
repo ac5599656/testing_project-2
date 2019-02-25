@@ -1,4 +1,6 @@
 const db = require("../models");
+const {ensureAuthenticated} = require('../config/auth');
+
 
 module.exports = (app) => {
     app.get("/api/comments", (req, res) => {
@@ -26,8 +28,13 @@ module.exports = (app) => {
         });
     });
 
-    app.post("/api/comments", (req, res) => {
-        db.Comment.create(req.body).then((dbComment) => {
+    app.post("/api/comments", ensureAuthenticated, (req, res) => {
+        let data = {
+            ...req.body,
+            UserId: req.user.id,
+        
+        }
+        db.Comment.create(data).then((dbComment) => {
             res.json(dbComment)
         });
     });
